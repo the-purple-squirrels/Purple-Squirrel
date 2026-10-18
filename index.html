@@ -1,0 +1,520 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#7A3DD8">
+  <meta name="description" content="Where's Purple Squirrel? A magical search-and-find adventure for little explorers and their families.">
+  <title>Where's Purple Squirrel? | Little Eyes. Big Adventures.</title>
+
+  <style>
+    :root {
+      --purple: #7A3DD8;
+      --dark: #19132E;
+      --muted: #686174;
+      --background: #FAF8F5;
+      --border: #E9DFF4;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--background);
+      color: var(--dark);
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+      padding: 0 24px;
+    }
+
+    header {
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      min-height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .brand {
+      font-weight: 900;
+      font-size: 20px;
+      color: var(--purple);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover { color: var(--purple); }
+
+    .hero {
+      padding: 95px 0 85px;
+      background:
+        radial-gradient(circle at 85% 20%, #E9D6FF, transparent 45%),
+        linear-gradient(145deg, #FFFFFF, #F7F0FF);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      color: var(--purple);
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      letter-spacing: -.035em;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: clamp(48px, 6vw, 82px);
+      line-height: 1.06;
+      margin: 22px 0;
+    }
+
+    h1 span { color: var(--purple); }
+
+    .hero p {
+      font-size: 18px;
+      line-height: 1.85;
+      color: var(--muted);
+      max-width: 520px;
+    }
+
+    .button {
+      display: inline-block;
+      background: var(--purple);
+      color: white;
+      padding: 17px 28px;
+      border-radius: 50px;
+      font-weight: 800;
+      margin-top: 25px;
+      transition: transform .2s, background .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-3px);
+      background: #6127B8;
+    }
+
+    .hero-art {
+      width: 100%;
+      max-width: 520px;
+      display: block;
+      margin: auto;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 30px rgba(65,30,90,.12));
+    }
+
+    .logo-placeholder {
+      border: 2px dashed #C9A8F0;
+      border-radius: 30px;
+      min-height: 330px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 35px;
+      color: var(--purple);
+      background: rgba(255,255,255,.5);
+      font-weight: 700;
+    }
+
+    section { padding: 90px 0; }
+
+    .section-heading {
+      text-align: center;
+      max-width: 740px;
+      margin: 0 auto 48px;
+    }
+
+    .section-heading h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(34px, 4vw, 49px);
+      margin: 15px 0;
+    }
+
+    .section-heading p {
+      font-size: 17px;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      align-items: stretch;
+    }
+
+    .adventure-card {
+      background: #fff;
+      padding: 0;
+      overflow: hidden;
+      border: 1px solid #E6D9F5;
+      border-radius: 26px;
+      box-shadow: 0 18px 42px rgba(52,25,94,.09);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .adventure-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 24px 52px rgba(52,25,94,.15);
+    }
+
+    .card-scene {
+      height: 180px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .adventure-card-1 .card-scene {
+      background: linear-gradient(145deg,#F2E7FF,#CDB3FF);
+    }
+
+    .adventure-card-2 .card-scene {
+      background: linear-gradient(145deg,#D9F5FB,#B2DCF3);
+    }
+
+    .adventure-card-3 .card-scene {
+      background: linear-gradient(145deg,#FFE6EC,#F8C6E7);
+    }
+
+    .card-scene:before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border: 2px dashed rgba(87,47,139,.23);
+      border-radius: 50%;
+      top: -70px;
+      right: -35px;
+    }
+
+    .card-scene:after {
+      content: "";
+      position: absolute;
+      width: 95px;
+      height: 95px;
+      border: 2px solid rgba(255,255,255,.5);
+      border-radius: 50%;
+      bottom: -55px;
+      left: -24px;
+    }
+
+    .scene-icon {
+      position: relative;
+      z-index: 2;
+      font-size: 76px;
+      filter: drop-shadow(0 12px 10px rgba(65,30,90,.18));
+      transform: rotate(-9deg);
+    }
+
+    .adventure-card-2 .scene-icon {
+      transform: rotate(8deg);
+    }
+
+    .scene-spark {
+      position: absolute;
+      color: white;
+      z-index: 2;
+      font-size: 35px;
+      text-shadow: 0 2px 7px #8159A666;
+    }
+
+    .scene-spark-one { top: 24px; left: 20%; }
+    .scene-spark-two { bottom: 24px; right: 18%; }
+
+    .scene-hill {
+      position: absolute;
+      bottom: -75px;
+      width: 115%;
+      height: 110px;
+      background: rgba(255,255,255,.26);
+      border-radius: 50% 50% 0 0;
+    }
+
+    .card-body { padding: 26px 25px 27px; }
+
+    .card-tag {
+      font-size: 10px;
+      letter-spacing: .16em;
+      font-weight: 900;
+      color: #7843BA;
+    }
+
+    .adventure-card h3 {
+      font-family: Georgia, serif;
+      font-size: 27px;
+      line-height: 1.18;
+      margin: 15px 0 12px;
+    }
+
+    .adventure-card p {
+      font-size: 14px;
+      line-height: 1.75;
+      color: #625B6D;
+      margin: 0;
+      min-height: 98px;
+    }
+
+    .card-foot {
+      border-top: 1px solid #EFE8F6;
+      margin-top: 22px;
+      padding-top: 17px;
+      font-size: 10px;
+      letter-spacing: .10em;
+      color: #8150BF;
+      font-weight: 800;
+    }
+
+    .mission {
+      background: #21153B;
+      color: white;
+      text-align: center;
+    }
+
+    .mission h2 {
+      font-family: Georgia, serif;
+      font-size: clamp(32px, 4vw, 48px);
+    }
+
+    .mission p {
+      font-size: 21px;
+      line-height: 1.8;
+      max-width: 780px;
+      margin: 25px auto;
+      color: #E8DDF6;
+    }
+
+    .coming-soon {
+      text-align: center;
+      background: #F1E6FF;
+    }
+
+    .coming-soon h2 {
+      font-family: Georgia, serif;
+      font-size: 45px;
+    }
+
+    .coming-soon p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    footer {
+      background: #160F29;
+      color: white;
+      padding: 42px 24px;
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.8;
+    }
+
+    @media(max-width: 750px) {
+      nav { flex-direction: column; padding: 20px 0; }
+      .nav-links { gap: 15px; flex-wrap: wrap; justify-content: center; }
+      .hero { padding: 60px 0; }
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero p { margin-left: auto; margin-right: auto; }
+      .cards { grid-template-columns: 1fr; gap: 20px; }
+      .card-scene { height: 145px; }
+      .scene-icon { font-size: 66px; }
+      .card-body { padding: 25px; }
+      .adventure-card p { min-height: 0; }
+      .adventure-card h3 { font-size: 26px; }
+      section { padding: 65px 0; }
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+      .adventure-card, .button { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <nav class="container">
+    <a class="brand" href="#">WHERE'S PURPLE SQUIRREL?</a>
+    <div class="nav-links">
+      <a href="#discover">Discover</a>
+      <a href="#mission">Our Mission</a>
+      <a href="#coming-soon">Coming Soon</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="container hero-inner">
+      <div>
+        <div class="eyebrow">A world of wonder awaits</div>
+        <h1>Little eyes.<br><span>Big adventures.</span></h1>
+        <p>
+          Meet Purple Squirrel, your curious little friend
+          on a big adventure. Explore magical places,
+          discover hidden surprises, and make wonderful
+          memories together.
+        </p>
+        <a class="button" href="#discover">Discover the Adventure →</a>
+      </div>
+
+      <div>
+        <img
+          class="hero-art"
+          src="purple-squirrel-logo.png"
+          alt="Where's Purple Squirrel official character and adventure logo"
+          onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+        >
+        <div class="logo-placeholder" style="display:none">
+          🐿️<br>
+          Purple Squirrel logo<br>
+          Upload purple-squirrel-logo.png
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="discover">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">The magic of discovery</div>
+        <h2>Every adventure begins with curiosity.</h2>
+        <p>
+          There's so much to discover when we look
+          a little closer. Come explore with Purple Squirrel!
+        </p>
+      </div>
+
+      <div class="cards">
+
+        <article class="adventure-card adventure-card-1">
+          <div class="card-scene">
+            <span class="scene-spark scene-spark-one">✦</span>
+            <span class="scene-spark scene-spark-two">✧</span>
+            <span class="scene-icon">🔎</span>
+            <span class="scene-hill"></span>
+          </div>
+          <div class="card-body">
+            <div class="card-tag">01 / THE SEARCH</div>
+            <h3>Every page hides a surprise</h3>
+            <p>
+              Follow the clues, spot tiny details, and
+              experience that magical “I found him!” moment.
+            </p>
+            <div class="card-foot">
+              ✦ LOOK • SEARCH • DISCOVER
+            </div>
+          </div>
+        </article>
+
+        <article class="adventure-card adventure-card-2">
+          <div class="card-scene">
+            <span class="scene-spark scene-spark-one">✦</span>
+            <span class="scene-spark scene-spark-two">✧</span>
+            <span class="scene-icon">🌍</span>
+            <span class="scene-hill"></span>
+          </div>
+          <div class="card-body">
+            <div class="card-tag">02 / THE ADVENTURE</div>
+            <h3>A whole world to explore</h3>
+            <p>
+              From bustling cities to faraway wonders,
+              every adventure opens a new place to discover.
+            </p>
+            <div class="card-foot">
+              ✦ IMAGINE • TRAVEL • EXPLORE
+            </div>
+          </div>
+        </article>
+
+        <article class="adventure-card adventure-card-3">
+          <div class="card-scene">
+            <span class="scene-spark scene-spark-one">✦</span>
+            <span class="scene-spark scene-spark-two">✧</span>
+            <span class="scene-icon">💜</span>
+            <span class="scene-hill"></span>
+          </div>
+          <div class="card-body">
+            <div class="card-tag">03 / THE MEMORIES</div>
+            <h3>Little moments. Big memories.</h3>
+            <p>
+              Snuggle up, search together, and turn a few
+              playful minutes into stories worth sharing.
+            </p>
+            <div class="card-foot">
+              ✦ PLAY • LAUGH • CONNECT
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="mission" id="mission">
+    <div class="container">
+      <div class="eyebrow" style="color:#C6A4FF">
+        Our Mission
+      </div>
+      <h2>More than a search. A shared adventure.</h2>
+      <p>
+        To inspire children to discover life's hidden
+        treasures, while reminding parents that time
+        together is the greatest treasure of all.
+      </p>
+    </div>
+  </section>
+
+  <section class="coming-soon" id="coming-soon">
+    <div class="container">
+      <div class="eyebrow">Something magical is coming</div>
+      <h2>The adventure begins soon.</h2>
+      <p>
+        A new world of searching, exploring, and
+        discovering is on its way.
+      </p>
+      <p>Stay curious. Keep exploring. 💜</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <strong>WHERE'S PURPLE SQUIRREL?</strong>
+  <p>Little eyes. Big adventures.</p>
+  <p>© 2026 Where's Purple Squirrel? All rights reserved.</p>
+</footer>
+
+</body>
+</html>
